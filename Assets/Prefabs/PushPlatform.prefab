@@ -44,21 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20675b43be5521244b30b9315ae143e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPush:
+  OnPushChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LightSource, Assembly-CSharp
-        m_MethodName: set_Active
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!212 &1469601516991438401
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -492604433
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1582703761720647702, guid: 1c9bc0d104c01934da10d4333b9dc48b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

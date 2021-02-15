@@ -18,7 +18,10 @@ public class LightSource : MovableObject {
         base.Init(map);
         _active = startActive;
         movingActive = type == Type.Movable;
-        if (type == Type.Decor) GetComponent<SpriteRenderer>().sortingLayerName = "Decor";
+        if (type == Type.Decor) {
+            GetComponent<SpriteRenderer>().sortingLayerName = "Decor";
+            GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
     }
     public void ToggleActive() => SetActive(!_active);
     void SetActive(bool value) {

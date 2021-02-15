@@ -39,7 +39,7 @@ public class Character : MovableObject {
         if (direction.sqrMagnitude > 0) _ = Move(direction);
     }
     bool OnWrongLight() {
-        if (isGirl && !_map.IsLit(Position)) return true;
+        if (isGirl && _map.IsShadowed(Position)) return true;
         else if (!isGirl && _map.IsLit(Position)) return true;
         return false;
     }
@@ -51,7 +51,10 @@ public class Character : MovableObject {
         if (!CanMove(move)) return false;
         _map.ScheduleCalculateLight(0.3f);
         var moved = await base.Move(move);
-        if (moved) CheckWin();
+        if (moved) {
+            if (OnWrongLight()) GameOver();
+            else CheckWin();
+        }
         return moved;
     }
     void CheckWin() {

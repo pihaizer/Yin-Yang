@@ -46,16 +46,6 @@ public class Map : MonoBehaviour {
                 movable.GetComponent<SpriteRenderer>().sprite = (tile as Tile).sprite;
             }
         }
-        //foreach (var lightSource in otherObjectsContainer.GetComponentsInChildren<LightSource>()) {
-        //    lightSource.Init(this);
-        //    _lights.Add(lightSource);
-        //}
-        //foreach (var movable in otherObjectsContainer.GetComponentsInChildren<MovableObject>()) {
-        //    movable.Init(this);
-        //    MovableObjects.Add(movable);
-        //}
-        //foreach (var desitnation in otherObjectsContainer.GetComponentsInChildren<DestinationPoint>()) 
-        //    desitnation.Init(this);
         foreach (var gridObject in otherObjectsContainer.GetComponentsInChildren<GridObject>()) {
             gridObject.Init(this);
             if (gridObject is MovableObject && (gridObject as MovableObject).movingActive)
@@ -73,12 +63,11 @@ public class Map : MonoBehaviour {
         movableObject = MovableObjects.Find(mo => mo.Position == cell);
         return movableObject != null;
     }
-    public bool IsLit(Vector3Int cell) {
-        return lightTilemap.GetColor(cell) == litColor;
-    }
-    public void ScheduleCalculateLight(float duration, int times = 6) {
+    public bool IsLit(Vector3Int cell) => lightTilemap.GetColor(cell) == litColor;
+    public bool IsShadowed(Vector3Int cell) => lightTilemap.GetColor(cell) == shadowColor;
+    public void ScheduleCalculateLight(float duration, int times = 6) =>
         StartCoroutine(ScheduleCalculateLightCoroutine(duration, times));
-    }
+
     IEnumerator ScheduleCalculateLightCoroutine(float duration, int times) {
         CalculateLight();
         for (int i = 0; i < times; i++) {
