@@ -4,17 +4,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MovableObject : MonoBehaviour {
+public class MovableObject : GridObject {
     protected bool _moveOnCooldown = false;
-    protected Map _map;
+    [HideInInspector]
+    public bool movingActive = true;
 
-    public Vector3Int Position { get; private set; }
-    public virtual void Init(Map map) {
-        _map = map;
-        Position = _map.Grid.WorldToCell(transform.position);
-        transform.position = _map.Grid.GetCellCenterWorld(Position);
-    }
     public bool CanMove(Vector3Int move) {
+        if (!movingActive) return false;
         var tempPosition = Position + move;
         if (_map.ContainsStaticObject(tempPosition)) return false;
         else if (_map.ContainsMovableObject(tempPosition, out MovableObject movableObject)) {

@@ -39,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Decor
+    uniqueID: 3802362863
+    locked: 0
+  - name: Light
+    uniqueID: 3492515377
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 1797939691
     locked: 0

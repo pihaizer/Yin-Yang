@@ -44,7 +44,6 @@ public class Character : MovableObject {
         return false;
     }
     void GameOver() {
-        Debug.Log("Game over");
         LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex);
         IsGameOver = true;
     }
@@ -52,13 +51,12 @@ public class Character : MovableObject {
         if (!CanMove(move)) return false;
         _map.ScheduleCalculateLight(0.3f);
         var moved = await base.Move(move);
-        if(moved) CheckWin();
+        if (moved) CheckWin();
         return moved;
     }
     void CheckWin() {
-        Vector3Int distanceToOther = isGirl ? Boy.Position - Position : Girl.Position - Position;
-        if (distanceToOther.sqrMagnitude == 1) {
-            Debug.Log("Win");
+        if (DestinationPoint.ForGirl == Girl.Position &&
+            DestinationPoint.ForBoy == Boy.Position) {
             LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             IsGameOver = true;
         }
