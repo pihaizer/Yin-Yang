@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2194773902396589567}
   - component: {fileID: 2194773902396589561}
   - component: {fileID: 2194773902396589566}
+  - component: {fileID: 4213199282924613992}
   m_Layer: 0
   m_Name: LightSource
   m_TagString: Untagged
@@ -44,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa20876339f0b74585d811c038e0ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingActive: 1
   type: 0
   startActive: 1
   radius: 0
+  shadowColor: {r: 0, g: 0, b: 0, a: 0.78431374}
 --- !u!212 &2194773902396589566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,3 +101,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4213199282924613992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194773902396589564}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class Character : MovableObject {
     public bool isGirl;
+    public Action Passed;
+    public Action Failed;
     public static bool IsGameOver { get; private set; } = false;
     public static Character Boy { get; private set; }
     public static Character Girl { get; private set; }
@@ -44,12 +46,14 @@ public class Character : MovableObject {
         return false;
     }
     void GameOver() {
-        LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex);
         IsGameOver = true;
+        Failed?.Invoke();
+        //LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public async override Task<bool> Move(Vector3Int move) {
         if (!CanMove(move)) return false;
-        _map.ScheduleCalculateLight(0.3f);
+        if(_map.ContainsMovableObject(Position + move, out MovableObject movableObject))
+            _map.ScheduleCalculateLight();
         var moved = await base.Move(move);
         if (moved) {
             if (OnWrongLight()) GameOver();
@@ -58,10 +62,12 @@ public class Character : MovableObject {
         return moved;
     }
     void CheckWin() {
+        if (IsGameOver) return;
         if (DestinationPoint.ForGirl == Girl.Position &&
             DestinationPoint.ForBoy == Boy.Position) {
-            LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             IsGameOver = true;
+            Passed?.Invoke();
+            //LoadingScreen.I.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

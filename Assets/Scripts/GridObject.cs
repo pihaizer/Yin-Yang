@@ -9,5 +9,9 @@ public class GridObject : MonoBehaviour {
         _map = map;
         Position = _map.Grid.WorldToCell(transform.position);
         transform.position = _map.Grid.GetCellCenterWorld(Position);
+        if(TryGetComponent(out Collider2D collider)) {
+            collider.enabled = false;
+            collider.enabled = true;
+        }
     }    
 }

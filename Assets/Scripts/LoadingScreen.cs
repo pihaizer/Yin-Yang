@@ -30,10 +30,10 @@ public class LoadingScreen : MonoBehaviour {
             SceneManager.LoadScene(0);
         await Close();
     }
-    async Task Open() {
+    public async Task Open() {
         await DOTween.To(() => _canvasGroup.alpha, (a) => _canvasGroup.alpha = a, 1, animationDuration).AsyncWaitForCompletion();
     }
-    async Task Close() {
+    public async Task Close() {
         await DOTween.To(() => _canvasGroup.alpha, (a) => _canvasGroup.alpha = a, 0, animationDuration).AsyncWaitForCompletion();
     }
 }
